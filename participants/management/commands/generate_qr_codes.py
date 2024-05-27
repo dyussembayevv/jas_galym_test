@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
         for i in range(1500):
             participant = Participant.objects.create(name=f'Participant {i + 1}')
-            url = f'http://192.168.200.14:8000/participant/{participant.id}/'
+            url = f'http://206.189.128.219/participant/{participant.id}/'
             qr = qrcode.make(url)
             qr_code_path = f'qr_codes/participant_{participant.id}.png'
             qr.save(settings.MEDIA_ROOT / qr_code_path)
