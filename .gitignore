@@ -1,0 +1,13 @@
+# Virtual environment
+venv/
+
+# Python specific
+*.pyc
+__pycache__/
+
+# Django specific
+*.log
+local_settings.py
+
+# macOS
+.DS_Store
