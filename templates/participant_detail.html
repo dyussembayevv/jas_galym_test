@@ -28,34 +28,37 @@
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <h1>Participant Details</h1>
-            </div>
-            <div class="card-body">
-                <h2 class="card-title">{{ participant.name }}</h2>
-                <img src="{{ participant.qr_code.url }}" class="img-fluid mb-3" alt="QR Code">
-                <form method="post" class="needs-validation" novalidate>
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ participant.name }}" required>
-                        <div class="invalid-feedback">
-                            Please enter a name.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="points">Points:</label>
-                        <input type="number" class="form-control" id="points" name="points" value="{{ participant.points }}" required>
-                        <div class="invalid-feedback">
-                            Please enter the points.
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </form>
-            </div>
-        </div>
+    <div class="container mt-4">
+    	<h1 class="text-center">{{ participant.name }}</h1>
+    	<p class="text-center">Очки: {{ participant.points }}</p>
+
+    	<div class="row mt-4">
+        	<div class="col-12 col-md-6 mb-3">
+            		<h2 class="text-center">Изменить имя</h2>
+            		<form method="post" class="form-horizontal">
+                		{% csrf_token %}
+                		{{ name_form.as_p }}
+                		<div class="d-grid">
+                    			<button type="submit" name="change_name" class="btn btn-primary">Изменить</button>
+                		</div>
+            		</form>
+        	</div>
+        	<div class="col-12 col-md-6 mb-3">
+            		<h2 class="text-center">Добавить очки</h2>
+            		<form method="post" class="form-horizontal">
+                		{% csrf_token %}
+                		{{ points_form.as_p }}
+                		<div class="d-grid">
+                    			<button type="submit" name="change_points" class="btn btn-primary">Добавить</button>
+                		</div>
+            		</form>
+        	</div>
+		
+    	</div>
+
+    	<div class="text-center mt-4">
+        	<a href="{% url 'index' %}" class="btn btn-secondary">Обратно на домашнюю страницу</a>
+    	</div>
     </div>
 
     <script>
